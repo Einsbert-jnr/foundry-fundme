@@ -12,10 +12,10 @@ import {Script} from "forge-std/Script.sol";
 import {MockV3Aggregator} from "../test/mocks/MockV3Aggregator.sol";
 
 contract HelpConfig is Script{
-    // If we are on a local anvil, we deploy mocks
-    // Otherwise, grab the existing address from the live network
+//     // If we are on a local anvil, we deploy mocks
+//     // Otherwise, grab the existing address from the live network
 
-    uint8 public constant DECIMALS = 8;
+    uint8 public constant DECIMALS = 8; 
     int256 public constant INITIAL_PRICE = 2000e8;
 
     struct NetworkConfig{
@@ -27,9 +27,11 @@ contract HelpConfig is Script{
     constructor(){
         if (block.chainid == 11155111){
             activeNetworkConfig = getSepoliaEthConfig();
+            // assertEq(version, 4);
         }
         else if (block.chainid == 1){
             activeNetworkConfig = getEthereumEthConfig();
+            // assertEq(version, 6);
         }
 
         else{
@@ -83,3 +85,6 @@ contract HelpConfig is Script{
         return anvilConfig;
     }
 }
+
+
+
